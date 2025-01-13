@@ -149,8 +149,8 @@ export default function ChatRoom() {
     </div>
   ):(
     
-    <div className="w-screen h-screen flex items-center text-anta justify-center bg-custom-gradient">
-      <div className="text-center p-10">
+    <div className="w-screen h-screen flex items-center text-anta justify-center bg-custom-gradient overflow-hidden">
+      <div className="text-anta flex justify-center flex-col gap-10 sm:flex sm:flex-row text-center p-10">
         <input
           type="text"
           placeholder="Enter your name"
@@ -160,11 +160,11 @@ export default function ChatRoom() {
                 handleNameSubmit();
               }
           }}
-          className="text-white text-lg p-2 rounded-xl h-16 outline-none bg-[#312143]"
+          className="text-white text-center text-lg p-2 rounded-xl h-16 outline-none bg-[#312143]"
         />
         <button
           onClick={handleNameSubmit}
-          className="ml-4 px-4 py-2 bg-[#5D409C] h-16 text-white rounded-xl"
+          className="px-4 py-2 bg-[#5D409C] h-16 text-white rounded-xl"
         >
           Join Room
         </button>
@@ -184,9 +184,9 @@ function Topbar(props: TopbarProps){
     return <div className="border-b border-black sticky top-0 z-10 bg-[#1D142E] w-screen h-20 sm:h-24 font-anta text-white">
         <div className="w-[90%] mx-auto py-2 sm:py-4 flex justify-between items-center"> 
             <div>
-                <div className="text-base sm:text-2xl">Room Id: {props.roomId}</div>
+                <div className="text-sm sm:text-2xl">Room Id: {props.roomId}</div>
                 <div className="sm:flex sm:gap-2">
-                    <div className="text-sm sm:text-lg"> Chatting as :</div>
+                    <div className="text-xs sm:text-lg"> Chatting as</div>
                     <span>
                         <input
                         value={props.name}
@@ -195,7 +195,7 @@ function Topbar(props: TopbarProps){
                         }} 
                         type="text"
                         placeholder="Anonymous"
-                        className="w-28 px-2 text-left text-xs sm:text-base sm:text-center bg-[#271e3f] rounded-sm sm:rounded-lg" >
+                        className="max-w-28 py-1 px-1 text-left text-xs sm:text-base sm:text-center bg-[#271e3f] rounded-sm sm:rounded-lg" >
                         </input>
                     </span>
                 </div>
