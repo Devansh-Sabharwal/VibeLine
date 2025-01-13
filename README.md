@@ -1,6 +1,3 @@
-Here's a draft for your **Vibeline** project's README file:  
-
----
 
 # **Vibeline**  
 
