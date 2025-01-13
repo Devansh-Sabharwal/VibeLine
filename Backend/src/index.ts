@@ -1,7 +1,10 @@
 import WebSocket, { WebSocketServer } from "ws";
-type customWebSocket = WebSocket & {roomId:string} & {userId:string}
-const wss = new WebSocketServer({ port: 8000 });
+import * as dotenv from 'dotenv'
+dotenv.config();
 
+type customWebSocket = WebSocket & {roomId:string} & {userId:string}
+const PORT = parseInt(process.env.PORT||"1000",10);
+const wss = new WebSocketServer({ port:PORT });
 const allSockets = new Map();
 wss.on("connection",(socket:customWebSocket)=>{
     socket.on("close", () => {
