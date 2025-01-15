@@ -101,7 +101,7 @@ export default function ChatRoom() {
                 toast.error(data.payload.message);
                 navigate('/')
               }
-              if(data.status=="success" && data.payload.type=="greeting"){
+              if(data.status=="success" && data.payload.type=="greeting" && data.payload.name!==""){
                 if (messages.find((msg) => msg.userId=== data.payload.userId)) return;
                 setMessages((prev)=>[...prev,data.payload])
               }
