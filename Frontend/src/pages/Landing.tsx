@@ -2,14 +2,14 @@ import logo from '../assets/logo.png'
 import bg from '../assets/Desktop - 1.png'
 import { generateRoom } from '../util/generate'
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useRef, MutableRefObject } from 'react';
+import { useEffect, useRef, MutableRefObject, useState } from 'react';
 import { toast } from 'react-toastify';
 const apiUrl = import.meta.env.VITE_BASE_URL;
 export default function Landing() {
   const wsRef = useRef<WebSocket>();
   const roomId = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
-
+  const [connect,setConnect] = useState<Boolean>();
   useEffect(()=>{
     wsRef.current = new WebSocket(apiUrl);
 
@@ -27,7 +27,7 @@ export default function Landing() {
         wsRef.current.close();
       }
     };
-  },[])
+  },[connect])
   const handleCreate=()=>{
     const room = generateRoom();
     if(wsRef.current && wsRef.current.readyState===WebSocket.OPEN){
@@ -52,7 +52,7 @@ export default function Landing() {
     }
     else{
       toast.error("Server is not listening. Attempting to reconnect...")
-      wsRef.current = new WebSocket(apiUrl);
+      setConnect(!connect);
     }
   }
     
@@ -83,7 +83,7 @@ export default function Landing() {
     }
     else{
       toast.error("Server is not listening. Attempting to reconnect...")
-      wsRef.current = new WebSocket(apiUrl);
+      setConnect(!connect);
     }
   }
   return (
